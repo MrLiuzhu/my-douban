@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import * as actions from './actions'
 import * as getters from './getters'
 import layOut from './modules/layOut'
+import activities from './modules/activities'
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
   actions,
   getters,
   modules: {
-    layOut
+    layOut,
+    activities
   }
 })
