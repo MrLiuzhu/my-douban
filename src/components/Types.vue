@@ -100,7 +100,6 @@ export default {
 .types{
   margin-top: 1rem;
   h2{
-    // font-size: 1.4rem;
     padding-top:0 1.6rem;
     height: 2.6rem;
     line-height: 2.6rem;
@@ -109,6 +108,9 @@ export default {
 }
 
 .type-list{
+  margin: 1.6rem 0 0 1.6rem;
+  overflow: hidden;
+
   li{
     display: inline-block;
     width: 50%;
@@ -122,8 +124,6 @@ export default {
     line-height: 4.2rem;
     a{
       color: #42bd56;
-      width: 100%;
-      display: inline-block;
     }
   }
 
@@ -141,6 +141,7 @@ export default {
     height: 0.8rem;
     margin-top: 1.4rem;
     font-weight: bold;
+    color: #ccc;
   }
 }
 </style>

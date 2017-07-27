@@ -5,6 +5,7 @@ import * as getters from './getters'
 
 import activities from './modules/activities'
 import movie from './modules/movie'
+import book from './modules/book'
 
 Vue.use(Vuex)
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
   getters,
   modules: {
     activities,
-    movie
+    movie,
+    book
   }
 })

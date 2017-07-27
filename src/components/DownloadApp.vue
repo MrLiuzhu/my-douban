@@ -1,7 +1,7 @@
 <template>
   <div class="download-app">
     <div class="info">
-      <img src="../assets/douban-app-logo.png" alt="">
+      <img src="../assets/douban-app-logo.png" alt="下载豆瓣">
       <div class="info-content">
         <strong>豆瓣</strong>
         <div>

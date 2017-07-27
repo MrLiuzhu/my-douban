@@ -12,7 +12,7 @@
         </router-link>
       </li>
       <li>
-        <router-link style="color: #9F7860"  :to="{ name: 'HomeView'}">
+        <router-link style="color: #9F7860"  :to="{ name: 'BookView'}">
           图书
         </router-link>
       </li>
