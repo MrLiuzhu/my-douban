@@ -17,7 +17,7 @@
         </router-link>
       </li>
       <li>
-        <router-link style="color: #E4A813"  :to="{ name: 'HomeView'}">
+        <router-link style="color: #E4A813"  :to="{ name: 'StatusView'}">
           广播
         </router-link>
       </li>

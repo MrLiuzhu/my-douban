@@ -2,6 +2,7 @@ import HomeView from '@/views/HomeView'
 import PageView from '@/views/PageView'
 import MovieView from '@/views/MovieView'
 import BookView from '@/views/BookView'
+import StatusView from '@/views/StatusView'
 
 import NotFoundPage from '@/components/page/404'
 import ErrorPage from '@/components/page/500'
@@ -38,7 +39,7 @@ let routes = [
       {
         path: 'status',
         name: 'StatusView',
-        component: HomeView
+        component: StatusView
       },
       {
         path: 'RegisterView',
@@ -46,7 +47,7 @@ let routes = [
         component: HomeView
       },
       {
-        path: 'LoginView',
+        path: 'login',
         name: 'LoginView',
         component: HomeView
       },
