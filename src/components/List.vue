@@ -42,7 +42,6 @@ export default {
   },
   filters: {
     subStr: function(value){
-      console.log(value)
       value.replace(/<.+>|\s/,'')
       return value.slice(0, 30)
     }

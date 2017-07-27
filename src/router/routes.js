@@ -1,5 +1,6 @@
 import HomeView from '@/views/HomeView'
 import PageView from '@/views/PageView'
+import MovieView from '@/views/MovieView'
 
 import NotFoundPage from '@/components/page/404'
 import ErrorPage from '@/components/page/500'
@@ -26,7 +27,7 @@ let routes = [
       {
         path: 'MovieView',
         name: 'MovieView',
-        component: HomeView
+        component: MovieView
       },
       {
         path: 'StatusView',

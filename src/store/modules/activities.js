@@ -10,7 +10,6 @@ const state = {
 
 const mutations = {
   loadMore (state, payload){
-    console.log('payload',payload.res)
     state.skip += 3
     state.events = state.events.concat(payload.res)
   }

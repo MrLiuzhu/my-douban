@@ -7,7 +7,7 @@
     </h1>
     <ul class="nav">
       <li>
-        <router-link style="color: #2384E8"  :to="{ name: 'HomeView'}">
+        <router-link style="color: #2384E8"  :to="{ name: 'MovieView'}">
           电影
         </router-link>
       </li>
