@@ -129,8 +129,8 @@ export default {
       })
     },
     onError(err){
-      this.error = err.body.error
-      this.registerState = '立即注册'
+      // this.error = err.body.error
+      this.resisterState = '立即注册'
       this.isDisabled = false
     },
   },

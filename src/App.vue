@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-    <router-view name="serach"></router-view>
+    <router-view class="view"></router-view>
+    <router-view class="view" name="search"></router-view>
   </div>
 </template>
 

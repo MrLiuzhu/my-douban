@@ -2,7 +2,11 @@
   <div class="talion">
     <div class="search-box">
       <span class="btn-close" @click="closeTalion">关闭</span>
-      <input type="text" class="search">
+      <input
+      type="text"
+      class="search"
+      v-model.trim.lazy="queryStr"
+      @keyup.enter='goSearch()'>
     </div>
     <div class="content-box">
       <div class="talion-nav">
@@ -81,6 +85,15 @@ export default {
   methods:{
     closeTalion: function(){
       this.$emit('closeTalion')
+    },
+    goSearch(){
+      this.$emit('closeTalion')
+      this.$router.push({
+        name:'SearchView',
+        params:{
+          q: this.queryStr
+        }
+      })
     }
   }
 }

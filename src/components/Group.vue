@@ -10,11 +10,14 @@
       tag='div'
       :key="item.id">
       <div class="group-info">
-        <img :src="item.images.small" alt="">
-        <h2>{{item.title}}</h2>
-        <span>{{item.group_member}} 人</span>
+        <img v-if="item.images.small" :src="item.images.small" alt="">
+        <div class="item-title">
+          <h2>{{item.title}}</h2>
+          <rating v-if="item.rating" :rating="item.rating"></rating>
+        </div>
+        <span  v-if="item.group_member">{{item.group_member}} 人</span>
       </div>
-      <div class="group-content">
+      <div v-if="item.group_topic" class="group-content">
         {{item.group_topic.title}}
       </div>
     </router-link>
@@ -23,7 +26,7 @@
 </template>
 
 <script>
-
+import Rating from '../components/Rating'
 
 export default {
   props:{
@@ -36,6 +39,7 @@ export default {
       required: true
     }
   },
+  components: { Rating },
   data(){
     return {
 
@@ -53,7 +57,7 @@ export default {
   }
 
   .group-item{
-    padding: 1.5rem 0;
+    padding: 2.5rem 0;
     border-bottom: 0.1rem solid #F2F2F2;
     cursor: pointer;
 
@@ -65,11 +69,23 @@ export default {
 
       img{
         margin-right: 1rem;
+        width: 4rem;
+        // height: 4rem;
       }
-      h2{
+      .item-title{
         flex-grow: 1;
-        font-size: 1.8rem;
-        font-weight: 500;
+        // display: flex;
+        // justify-content: center;
+        // flex-direction: column;
+        // box-sizing: border-box;
+        // padding: 1rem 0;
+        // height: 100%;
+        h2{
+          font-size: 1.8rem;
+          font-weight: 500;
+          height: 1.8rem;
+          line-height: 1.8rem;
+        }
       }
       span{
         float: right;

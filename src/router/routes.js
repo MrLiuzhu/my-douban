@@ -6,6 +6,7 @@ import StatusView from '@/views/StatusView'
 import GroupView from '@/views/GroupView'
 import LoginView from '@/views/LoginView'
 import RegisterView from '@/views/RegisterView'
+import SearchView from '@/views/SearchView'
 
 import NotFoundPage from '@/components/page/404'
 import ErrorPage from '@/components/page/500'
@@ -60,6 +61,14 @@ let routes = [
     path: '/register',
     name: 'RegisterView',
     component: RegisterView
+  },
+  {
+    path: '/search',
+    name: 'SearchView',
+    components: {
+      default: PageView,
+      search: SearchView
+    }
   },
   {
     path: '/500',

@@ -1,13 +1,15 @@
 <template>
-  <router-link :to="{name: 'LoginView'}" class="user-bar" tag="div">
+  <router-link :to="{name: currentLink}" class="user-bar" tag="div">
     <div class="avatar">
-      <!-- <img src="../assets/avatar.png" alt="avatar"> -->
-      <template>
+      <template v-if='currentUser.name'>
+        <img src="../assets/avatar.png" alt="avatar">
+      </template>
+      <template v-else>
         <img src="../assets/user_normal.jpg" alt="未登陆">
       </template>
     </div>
     <div class="holder">
-      请先登陆
+      {{holder}}
     </div>
     <div class="icon icon-pen">
 
@@ -27,22 +29,22 @@ export default {
 
     }
   },
-  // computed: {
-  //   currentLink: function () {
-  //     return this.currentUser.name ? 'HomeView' : "LoginView"
-  //   },
-  //   holder: function () {
-  //     return this.currentUser.name ? this.currentUser.name : "请先登陆"
-  //   },
-  //   ...mapGetters(['currentUser'])
-  // },
-  // created () {
-  //   if(localStorage.getItem('email')){
-  //     this.$store.commit({
-  //       type: 'getLocalUser'
-  //     })
-  //   }
-  // }
+  computed:{
+    currentLink: function(){
+      return this.currentUser.name ? 'HomeView' : 'LoginView'
+    },
+    holder: function(){
+      return this.currentUser.name ?  this.currentUser.name : '请先登陆'
+    },
+    ...mapGetters(['currentUser'])
+  },
+  created () {
+    if(localStorage.getItem('email')){
+      this.$store.commit({
+        type: 'getLocalUser'
+      })
+    }
+  }
 }
 </script>
 
@@ -57,6 +59,8 @@ export default {
   .avatar{
     img{
       border-radius: 50%;
+      width:4rem;
+      height: 4rem;
     }
   }
 

@@ -46,7 +46,7 @@ const mutations = {
     state.login_name = payload.name
     state.login_token = payload.token
   },
-  getLocalUer(state, payload){
+  getLocalUser(state, payload){
     state.login_email = localStorage.getItem('email')
     state.login_token = localStorage.getItem('token')
     state.login_name = localStorage.getItem('name')

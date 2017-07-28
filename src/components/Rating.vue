@@ -50,6 +50,8 @@ export default {
   color: #aaa;
   font-size: 1.4rem;
   margin-top: 0.4rem;
+  height: 1.4rem;
+  line-height: 1.4rem;
 
   .star{
     display: inline-block;

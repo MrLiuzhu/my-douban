@@ -72,42 +72,42 @@ const mutations = {
 
 const actions = {
   getMovie ({commit, state}) {
-    // request
-    // .get('https://api.douban.com/v2/movie/in_theaters?count=8')
-    // .use(jsonp)
-    // .end((err,res)=>{
-    //   if(!err){
-    //     commit({
-    //       type: 'getMovie',
-    //       tag: 'hotMovies',
-    //       res: res.body.subjects
-    //     })
-    //   }
-    // })
-    // request
-    // .get('https://api.douban.com/v2/movie/in_theaters?count=8')
-    // .use(jsonp)
-    // .end((err,res)=>{
-    //   if(!err){
-    //     commit({
-    //       type: 'getMovie',
-    //       tag: 'newMovies',
-    //       res: res.body.subjects
-    //     })
-    //   }
-    // })
-    // request
-    // .get('https://api.douban.com/v2/movie/top250?count=8')
-    // .use(jsonp)
-    // .end((err,res)=>{
-    //   if(!err){
-    //     commit({
-    //       type: 'getMovie',
-    //       tag: 'topMovies',
-    //       res: res.body.subjects
-    //     })
-    //   }
-    // })
+    request
+    .get('https://api.douban.com/v2/movie/in_theaters?count=8')
+    .use(jsonp)
+    .end((err,res)=>{
+      if(!err){
+        commit({
+          type: 'getMovie',
+          tag: 'hotMovies',
+          res: res.body.subjects
+        })
+      }
+    })
+    request
+    .get('https://api.douban.com/v2/movie/in_theaters?count=8')
+    .use(jsonp)
+    .end((err,res)=>{
+      if(!err){
+        commit({
+          type: 'getMovie',
+          tag: 'newMovies',
+          res: res.body.subjects
+        })
+      }
+    })
+    request
+    .get('https://api.douban.com/v2/movie/top250?count=8')
+    .use(jsonp)
+    .end((err,res)=>{
+      if(!err){
+        commit({
+          type: 'getMovie',
+          tag: 'topMovies',
+          res: res.body.subjects
+        })
+      }
+    })
   }
 }
 

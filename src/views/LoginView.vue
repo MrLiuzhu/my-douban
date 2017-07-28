@@ -140,7 +140,7 @@ export default {
   },
   created(){
     if(localStorage.getItem('email')){
-      this.$store.commit('getLocalUer')
+      this.$store.commit('getLocalUser')
     }
   },
   mounted(){
