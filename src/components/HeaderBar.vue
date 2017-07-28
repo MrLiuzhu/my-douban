@@ -22,7 +22,7 @@
         </router-link>
       </li>
       <li>
-        <router-link style="color: #2AB8CC"  :to="{ name: 'HomeView'}">
+        <router-link style="color: #2AB8CC"  :to="{ name: 'GroupView'}">
           小组
         </router-link>
       </li>

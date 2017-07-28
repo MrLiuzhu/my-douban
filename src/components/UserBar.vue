@@ -50,7 +50,7 @@ export default {
 .user-bar{
   height: 4rem;
   line-height: 3rem;
-  padding: 0.2rem 1rem 0.6rem;
+  padding: 0.6rem 1rem 0.6rem;
   display: flex;
   border-bottom: 0.2rem solid #E8E8E8;
 

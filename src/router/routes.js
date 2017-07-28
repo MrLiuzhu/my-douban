@@ -3,6 +3,7 @@ import PageView from '@/views/PageView'
 import MovieView from '@/views/MovieView'
 import BookView from '@/views/BookView'
 import StatusView from '@/views/StatusView'
+import GroupView from '@/views/GroupView'
 
 import NotFoundPage from '@/components/page/404'
 import ErrorPage from '@/components/page/500'
@@ -40,6 +41,11 @@ let routes = [
         path: 'status',
         name: 'StatusView',
         component: StatusView
+      },
+      {
+        path: 'group',
+        name: 'GroupView',
+        component: GroupView
       },
       {
         path: 'RegisterView',
