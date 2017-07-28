@@ -109,6 +109,7 @@ export default {
     color: #42bd56;
     padding-left: 2.6rem;
     padding-right: 1rem;
+    cursor: pointer;
   }
 
   .search{

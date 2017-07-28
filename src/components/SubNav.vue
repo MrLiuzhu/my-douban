@@ -22,7 +22,12 @@
           <router-link :to="{name: 'RegisterView'}">注册账号</router-link>
         </li>
         <li>
-          <router-link :to="{name: 'LoginView'}" replace>登陆豆瓣</router-link>
+          <template v-if="email">
+            <a href="#" @click.prevent='logout'>退出登陆</a>
+          </template>
+          <template v-else>
+            <router-link :to="{name: 'LoginView'}" replace>登陆豆瓣</router-link>
+          </template>
         </li>
         <li>
           <a href="https://movie.douban.com/">使用桌面版</a>
@@ -36,7 +41,7 @@
 </template>
 
 <script>
-
+import { mapState } from 'vuex'
 
 export default {
   props: {
@@ -45,9 +50,22 @@ export default {
       default: 'quickNav'
     }
   },
+  computed: {
+    ...mapState({
+      email: state => state.user.login_email
+    })
+  },
   data(){
     return {
 
+    }
+  },
+  methods: {
+    logout(){
+      this.$store.commit({
+        type: 'logout'
+      })
+      this.$router.replace({name: 'LoginView'})
     }
   }
 

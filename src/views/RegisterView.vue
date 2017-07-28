@@ -1,61 +1,84 @@
 <template>
-  <div class="login-box">
-    <div class="title">
-      登陆豆瓣
-    </div>
-    <form method="get" @submit.prevent="onSubmit()">
-      <p v-if="error" class="tip error">{{error}}</p>
-      <div class="form-item form-user">
-        <input
-        type="email"
-        name='email'
-        :value="email"
-        @input='updateData'
-        placeholder="邮箱">
+  <div class="resister-box">
+    <template v-if="isComplete">
+      <div class="title">
+        注册成功
       </div>
-      <div class="form-item form-pass">
-        <template v-if=" passType === 'password'">
-            <input
-            type="password"
-            name='token'
-            v-model="token"
-            @input='updateData'
-            placeholder="密码">
-        </template>
-        <template v-if=" passType === 'text'">
-            <input
-            type="text"
-            name='token'
-            v-model="token"
-            @input='updateData'
-            placeholder="密码">
-        </template>
-        <span
-        class="show-pass"
-        @click="togglePassType"
-        :class="{show: isShow}">
-        </span>
+      <form method="get" onsubmit="return false">
+        <p class="tip">请复制以下Token进行登录</p>
+        <div class="form-item form-user">
+          <input
+          type="text"
+          name='token'
+          v-model="token"
+          placeholder="token">
+        </div>
+        <div class="resister-btn">
+          <router-link class="submit" :to="{name: 'LoginView'}">
+            去登陆
+          </router-link>
+        </div>
+      </form>
+    </template>
+    <template v-else>
+      <div class="title">
+        欢迎加入豆瓣
       </div>
-      <div class="login-btn">
-        <button
-        :class="{isDisabled: isDisabled}"
-        class="submit"
-        type="submit"
-        name="button"
-        :disabled="isDisabled">
-          {{loginState}}
-        </button>
+      <form method="get" @submit.prevent="onSubmit()">
+        <p v-if="error" class="tip error">{{error}}</p>
+        <div class="form-item form-user">
+          <input
+          type="email"
+          name='email'
+          v-model="email"
+          placeholder="邮箱">
+        </div>
+        <div class="form-item form-pass">
+          <template v-if=" passType === 'password'">
+              <input
+              type="password"
+              name='pass'
+              v-model="pass"
+              placeholder="密码">
+          </template>
+          <template v-if=" passType === 'text'">
+              <input
+              type="text"
+              name='pass'
+              v-model="pass"
+              placeholder="密码">
+          </template>
+          <span
+          class="show-pass"
+          @click="togglePassType"
+          :class="{show: isShow}">
+          </span>
+        </div>
+        <div class="form-item form-user">
+          <input
+          type="name"
+          name='name'
+          v-model="name"
+          placeholder="用户名">
+        </div>
+        <div class="resister-btn">
+          <button
+          :class="{isDisabled: isDisabled}"
+          class="submit"
+          type="submit"
+          name="button"
+          :disabled="isDisabled">
+            {{resisterState}}
+          </button>
+        </div>
+      </form>
+      <div class="resister-more">
+        点击「注册」代表你已阅读并同意用户使用协议
       </div>
-    </form>
-    <div class="login-more">
-      使用其他方式登录 & 找回密码
-    </div>
-    <div class="footer">
-      <router-link :to="{name: 'RegisterView'}" class="footer-link">
-          注册豆瓣帐号
-      </router-link>
-      <a class="footer-link">下载豆瓣App</a>
-    </div>
+      <div class="footer">
+        <span>下载豆瓣App</span>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -64,57 +87,41 @@ import { mapState } from 'vuex'
 export default {
   data(){
     return {
+      isComplete: false,
       error: '',
       passType: 'password',
-      loginState: '登陆',
+      resisterState: '立即注册',
       isShow: false,
       isDisabled: false,
+      name: '',
+      token: '',
+      email: '',
+      pass: ''
     }
   },
   computed: {
-    ...mapState({
-      email: state => state.user.temp_email,
-      // token: state => state.user.temp_token,
-    }),
-    token:{
-      //v-model 与 vuex 一起使用需要设置 getter and setter
-      get(){
-        return this.$store.state.user.temp_token
-      },
-      set(newValue){
-         this.$store.commit({
-           type:'updateData',
-           name:'token',
-           value:newValue
-         })
-      }
-    }
+
   },
   methods:{
     togglePassType: function(){
       this.isShow = !this.isShow
       this.isShow ? this.passType = 'text' : this.passType = 'password'
     },
-    updateData(e){
-      this.$store.commit({
-        type:'updateData',
-        name:e.target.name,
-        value:e.target.value
-      })
-    },
     beforeSubmit(){
       this.isDisabled = true
-      this.loginState = '正在登陆...'
+      this.resisterState = '正在注册...'
     },
     onSuccess(res){
-      this.$router.push({name: 'StatusView'})
+      this.isComplete = true;
+      this.token = res.body.token;
     },
     onSubmit(){
       this.beforeSubmit();
       this.$store.dispatch({
-        type: 'login',
+        type: 'register',
         email: this.email,
-        token: this.token
+        pass: this.pass,
+        name: this.name,
       }).then((res)=>{
         this.onSuccess(res)
       },(err)=>{
@@ -122,26 +129,24 @@ export default {
       })
     },
     onError(err){
-      this.loginState = '登陆'
+      this.error = err.body.error
+      this.registerState = '立即注册'
       this.isDisabled = false
-      this.err = err.body.error
     },
+  },
 
-  },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      if (vm.$store.getters.currentUser.email) {
-        // next({ path: '/' })
-        vm.$router.push({name: 'StatusView'})
-      } else {
-        next()
-      }
-    })
-  },
+  // beforeRouteEnter (to, from, next) {
+  //   next(vm => {
+  //     if (vm.$store.getters.currentUser.email) {
+  //       // next({ path: '/' })
+  //       vm.$router.push({name: 'StatusView'})
+  //     } else {
+  //       next()
+  //     }
+  //   })
+  // },
   created(){
-    if(localStorage.getItem('email')){
-      this.$store.commit('getLocalUer')
-    }
+
   },
   mounted(){
 
@@ -150,20 +155,28 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.login-box{
+.resister-box{
   text-align: center;
 
   .title{
-    height: 4.5rem;
-    line-height: 4.5rem;
-    font-size: 1.8rem;
-    border-bottom: 0.1rem solid #eee;
-    font-weight: bold;
+    height: 9rem;
+    line-height: 9rem;
+    font-size: 4rem;
+    font-weight: 300;
+    color: #42bd56;
   }
 
   form{
     margin: 3rem 1rem;
     // width: 100%;
+
+    .tip{
+      line-height: 1.6rem;
+      height: 1.6rem;
+      font-size: 1.4rem;
+      color: #aaa;
+      text-align: left;
+    }
 
     .form-item{
       height: 4rem;
@@ -176,12 +189,14 @@ export default {
         width: 100%;
         padding: 0 1rem;
         line-height: 4rem;
-        border-radius: 0.4rem;
-        border: 0.1rem solid #999;
+        // border-radius: 0.4rem;
+        border-top-left-radius: 0.3rem;
+        border-top-right-radius: 0.3rem;
+        border: 0.1rem solid #ccc;
         font-size: 1.5rem;
 
         &:focus{
-          border: 0.1rem solid #999;
+          border: 0.1rem solid #ccc;
           outline: none;
         }
       }
@@ -205,18 +220,20 @@ export default {
       }
     }
 
-    .login-btn{
+    .resister-btn{
       margin-top: 2rem;
 
         .submit{
           display: inline-block;
           width: 100%;
-          height: 4rem;
+          box-sizing: border-box;
           border-radius: 0.3rem;
           background-color: #17AA52;
           border: 0.1rem solid #17AA52;
           color: #fff;
           font-size: 1.7rem;
+          padding: 1.2rem 2.6rem;
+          cursor: pointer;
         }
 
         .isDisabled{
@@ -227,7 +244,7 @@ export default {
     }
   }
 
-  .login-more{
+  .resister-more{
     font-size: 1.5rem;
     color: #aaa;
     margin-top: 1rem;
@@ -236,10 +253,14 @@ export default {
 
   .footer{
     font-size: 1.5rem;
-    .footer-link{
+    color: #42bd56;
+    span{
       margin-right: 1.5rem;
-      color: #42bd56;
     }
   }
+}
+
+input::-webkit-input-placeholder{
+    color: #bbb;opacity:1;
 }
 </style>

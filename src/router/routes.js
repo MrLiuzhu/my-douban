@@ -5,6 +5,7 @@ import BookView from '@/views/BookView'
 import StatusView from '@/views/StatusView'
 import GroupView from '@/views/GroupView'
 import LoginView from '@/views/LoginView'
+import RegisterView from '@/views/RegisterView'
 
 import NotFoundPage from '@/components/page/404'
 import ErrorPage from '@/components/page/500'
@@ -48,17 +49,17 @@ let routes = [
         name: 'GroupView',
         component: GroupView
       },
-      {
-        path: 'RegisterView',
-        name: 'RegisterView',
-        component: HomeView
-      },
     ]
   },
   {
     path: '/login',
     name: 'LoginView',
     component: LoginView
+  },
+  {
+    path: '/register',
+    name: 'RegisterView',
+    component: RegisterView
   },
   {
     path: '/500',
