@@ -4,6 +4,7 @@ import MovieView from '@/views/MovieView'
 import BookView from '@/views/BookView'
 import StatusView from '@/views/StatusView'
 import GroupView from '@/views/GroupView'
+import LoginView from '@/views/LoginView'
 
 import NotFoundPage from '@/components/page/404'
 import ErrorPage from '@/components/page/500'
@@ -52,17 +53,18 @@ let routes = [
         name: 'RegisterView',
         component: HomeView
       },
-      {
-        path: 'login',
-        name: 'LoginView',
-        component: HomeView
-      },
     ]
+  },
+  {
+    path: '/login',
+    name: 'LoginView',
+    component: LoginView
   },
   {
     path: '/500',
     component: ErrorPage
   },
+
   {
     path: '*',
     redirect: '/pages/',

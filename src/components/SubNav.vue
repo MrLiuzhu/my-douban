@@ -17,12 +17,12 @@
       </ul>
     </div>
     <div class="navBottom" v-if="mold === 'navBottom'">
-      <ul class="quick-nav">
+      <ul class="nav-bottom">
         <li>
           <router-link :to="{name: 'RegisterView'}">注册账号</router-link>
         </li>
         <li>
-          <router-link :to="{name: 'LoginView'}">登陆豆瓣</router-link>
+          <router-link :to="{name: 'LoginView'}" replace>登陆豆瓣</router-link>
         </li>
         <li>
           <a href="https://movie.douban.com/">使用桌面版</a>
@@ -88,7 +88,7 @@ export default {
 }
 
 .navBottom{
-  ul{
+  .nav-bottom{
     overflow: hidden;
     margin: 1rem 0 0 0;
     padding-top: 0.6rem;

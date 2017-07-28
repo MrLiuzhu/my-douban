@@ -7,6 +7,7 @@ import activities from './modules/activities'
 import movie from './modules/movie'
 import book from './modules/book'
 import group from './modules/group'
+import user from './modules/user'
 
 Vue.use(Vuex)
 
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     activities,
     movie,
     book,
-    group
+    group,
+    user
   }
 })
