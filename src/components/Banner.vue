@@ -1,12 +1,22 @@
 <template>
   <div class="banner">
-    <div class="content">
-      <span class="title">{{title}}</span>
-      <div class="button-wrapper">
-        <span class="download">极速下载</span>
-        <span class="open">打开</span>
+    <template v-if="adImg">
+      <div class="banner-bg ad">
+        <img :src="adImg" alt="ad">
+        <span>广告</span>
       </div>
-    </div>
+    </template>
+    <template v-else>
+      <div class="banner-else">
+        <div class="content">
+          <span class="title">{{title}}</span>
+          <div class="button-wrapper">
+            <span class="download">极速下载</span>
+            <span class="open">打开</span>
+          </div>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -19,6 +29,10 @@ export default {
       type: String,
       required: false,
       default: "打开App, 浏览更多"
+    },
+    adImg: {
+      type: String,
+      required: false
     }
   },
   data (){
@@ -30,7 +44,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.banner{
+.banner-else{
   height: 8rem;
   position: relative;
   background: url('../assets/promotion_bg.jpg');
@@ -73,4 +87,31 @@ export default {
     }
   }
 }
+
+
+.banner{
+  position: relative;
+  height: 8rem;
+
+  .banner-bg{
+    position: absolute;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  .ad {
+    span {
+      position: absolute;
+      right: 0;
+      bottom: 0.3rem;
+      padding: 0.4rem;
+      font-size: 1.2rem;
+      color: rgb(255, 255, 255);
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
 </style>

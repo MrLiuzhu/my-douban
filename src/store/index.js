@@ -9,6 +9,7 @@ import book from './modules/book'
 import group from './modules/group'
 import user from './modules/user'
 import search from './modules/search'
+import subject from './modules/subject'
 
 Vue.use(Vuex)
 
@@ -24,6 +25,7 @@ export default new Vuex.Store({
     book,
     group,
     user,
-    search
+    search,
+    subject
   }
 })

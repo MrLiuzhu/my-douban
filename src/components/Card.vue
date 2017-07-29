@@ -11,7 +11,7 @@
         </div>
       </div>
     </div>
-    <div class="article-card">
+    <div v-if="mold === 'quote'" class="article-card">
       <div class="title">
           豆瓣App 4.12.0 主要更新豆瓣App 4.12.0
       </div>
@@ -19,10 +19,13 @@
           - 可以写读书笔记了同时支持编辑。随时随地，摘录怦然心动的段落，写下阅读时的随感。来写笔记同时支持编辑。随时随地，摘录怦然心动的段落，写下阅读时的随感。来写笔记同时支持编辑。随时随地，摘录怦然心动的段落，写下阅读时的随感。来写笔记.
       </div>
     </div>
+    <p class="comment-detail" v-if="mold === 'comment'">
+      可以写读书笔记了，同时支持编辑。随时随地，摘录怦然心动的段落，写下阅读时的随感。来写笔记吧，你
+    </p>
     <div class="comment-card">
       <span class="btn like"><i>4</i></span>
-      <span class="btn comment"><i>4</i></span>
-      <span class="btn retweet"><i>4</i></span>
+      <span v-if="mold === 'quote'" class="btn comment"><i>4</i></span>
+      <span v-if="mold === 'quote'" class="btn retweet"><i>4</i></span>
       <span class="btn more"></span>
     </div>
   </div>
@@ -51,7 +54,7 @@ export default {
 
 <style lang="less" scoped>
 .card{
-  padding: 2rem 2rem 1rem 2rem;
+  padding: 2rem 1rem 1rem 1rem;
   position: relative;
   // border-bottom: 0.1rem solid #E8E8E8;
 
@@ -81,7 +84,7 @@ export default {
   }
 
   .article-card{
-    margin: 0 0 0.5rem 5rem;
+    margin: 0 0 0.5rem 1rem;
     padding: 1.5rem;
     border: 0.1rem solid #d8d8d8;
     border-radius: 0.2rem;
@@ -108,11 +111,18 @@ export default {
     }
   }
 
+  .comment-detail{
+    margin: 0 0 0.5rem 1rem;
+    line-height: 2.2rem;
+    font-size: 1.5rem;
+    color: #494949;
+  }
+
   .comment-card{
-    display: relative;
+    position: relative;
     display: flex;
     border-bottom: 0.1rem solid #e8e8e8;
-    padding: 1rem 0 1rem 5rem;
+    padding: 0 0 2rem 1rem;
     color: #ccc;
     .btn{
         display: block;
@@ -137,12 +147,15 @@ export default {
       background-image: url(https://img3.doubanio.com/f/talion/8604ef3950b947d55406e2a6f5cf6ca7f0b934e3/pics/card/ic_retweet_gray.svg);
     }
     .more{
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-right: 1rem;
       background-repeat: no-repeat;
       background-position: center center;
       background-image: url(https://img3.doubanio.com/f/talion/be268c0a1adb577c8dfdcfbe48c818af3983ed62/pics/card/more.svg);
     }
   }
 }
-
 
 </style>

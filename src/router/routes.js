@@ -8,6 +8,7 @@ import LoginView from '@/views/LoginView'
 import RegisterView from '@/views/RegisterView'
 import SearchView from '@/views/SearchView'
 import DetailView from '@/views/DetailView'
+import SubjectView from '@/views/SubjectView'
 
 import NotFoundPage from '@/components/page/404'
 import ErrorPage from '@/components/page/500'
@@ -74,6 +75,14 @@ let routes = [
     components: {
       default: PageView,
       search: SearchView
+    }
+  },
+  {
+    path: '/pages/:classify/subject/:id',
+    name: 'SubjectView',
+    components: {
+      default: PageView,
+      search: SubjectView
     }
   },
   {

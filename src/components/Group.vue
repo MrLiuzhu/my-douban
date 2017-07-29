@@ -90,12 +90,15 @@ export default {
       span{
         float: right;
         font-size: 1.4rem;
+        line-height: 1.8rem;
         color: #aaa;
+        min-width: 7rem;
       }
     }
 
     .group-content{
       color: #aaa;
+      overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
       height: 3rem;

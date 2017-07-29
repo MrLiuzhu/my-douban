@@ -17,13 +17,18 @@
         </div>
       </router-link>
     </template>
-
+    <template v-if="mold === 'basic'">
+      <div v-for="item in items" class="basic-item">
+        <a href="#">
+          <h3>{{item.title}}</h3>
+          <div class="info">{{item.comments}}</div>
+        </a>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
-
-
 export default {
   props: {
     mold: {
@@ -96,6 +101,20 @@ export default {
     position: absolute;
     bottom: 2.5rem;
     right: 1.8rem;
+  }
+
+  .basic-item{
+    h3{
+      margin: 1.5rem 0 1rem 0;
+      font-size: 1.7rem;
+      color: #494949;
+      font-weight: 500;
+    }
+
+    .info{
+      color: #42bd56;
+      font-size: 1.4rem;
+    }
   }
 }
 
