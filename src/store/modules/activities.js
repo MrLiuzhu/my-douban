@@ -12,6 +12,10 @@ const mutations = {
   loadMore (state, payload){
     state.skip += 3
     state.events = state.events.concat(payload.res)
+  },
+
+  getSingleEvent(state, payload){
+    state.eventItem = payload.res
   }
 }
 
@@ -28,6 +32,27 @@ const actions = {
           res: res.body.events
         })
       }
+    })
+  },
+
+  getSingleEvent({commit, state}, payload){
+    console.log('payload')
+    console.log(payload)
+    return new Promise((resolve, reject)=>{
+      request
+      .get('https://api.douban.com/v2/event/' + payload.id)
+      .use(jsonp)
+      .end((err,res) => {
+        console.log('res')
+        console.log(res)
+        if(!err){
+          commit({
+            type: 'getSingleEvent',
+            res: res.body
+          })
+          resolve(res)
+        }
+      })
     })
   }
 }

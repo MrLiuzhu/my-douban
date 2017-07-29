@@ -7,6 +7,7 @@ import GroupView from '@/views/GroupView'
 import LoginView from '@/views/LoginView'
 import RegisterView from '@/views/RegisterView'
 import SearchView from '@/views/SearchView'
+import DetailView from '@/views/DetailView'
 
 import NotFoundPage from '@/components/page/404'
 import ErrorPage from '@/components/page/500'
@@ -49,6 +50,11 @@ let routes = [
         path: 'group',
         name: 'GroupView',
         component: GroupView
+      },
+      {
+        path: 'detail/:id',
+        name: 'DetailView',
+        component: DetailView
       },
     ]
   },
